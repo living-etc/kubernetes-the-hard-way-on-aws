@@ -1,15 +1,12 @@
 #! /usr/bin/env bash
 
-set -exuo pipefail
-
-RESOURCE_GROUP="Kubernetes-The-Hard-Way"
+set -euo pipefail
 
 KUBERNETES_PUBLIC_ADDRESS=$(
-  az network public-ip show \
-    --name kthw \
-    --resource-group ${RESOURCE_GROUP} \
-    --query 'ipAddress' \
-    --output tsv
+  aws --profile kthw elbv2 describe-load-balancers \
+    --names "controllers" \
+    --query "LoadBalancers[0].DNSName" \
+    --output text
 )
 
 echo "${KUBERNETES_PUBLIC_ADDRESS}"

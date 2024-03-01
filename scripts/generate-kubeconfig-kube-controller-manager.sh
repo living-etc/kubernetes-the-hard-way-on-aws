@@ -2,17 +2,8 @@
 
 set -euo pipefail
 
-RESOURCE_GROUP="Kubernetes-The-Hard-Way"
 KUBECONFIG_PATH=kubeconfig
 TLS_PATH=tls
-
-KUBERNETES_PUBLIC_ADDRESS=$(
-  az network public-ip show \
-    --name kthw \
-    --resource-group ${RESOURCE_GROUP} \
-    --query 'ipAddress' \
-    --output tsv
-)
 
 kubectl config set-cluster kubernetes-the-hard-way \
   --certificate-authority=${TLS_PATH}/ca.pem \

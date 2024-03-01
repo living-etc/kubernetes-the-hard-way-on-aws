@@ -22,20 +22,19 @@ for instance in worker-1 worker-2 worker-3; do
 CSR
 
   EXTERNAL_IP=$(
-    az network public-ip show \
-    --name ${instance} \
-    --resource-group Kubernetes-The-Hard-Way \
-    --query 'ipAddress' \
-    --output tsv
+    aws ec2 describe-instances \
+      --filters "Name=tag:Name,Values=${instance}" \
+      --query "Reservations[*].Instances[*].PublicIpAddress" \
+      --output text
   )
 
   INTERNAL_IP=$(
-    az network nic show \
-    --name ${instance} \
-    --resource-group Kubernetes-The-Hard-Way \
-    --query 'ipConfigurations[0].privateIPAddress' \
-    --output tsv
+    aws ec2 describe-instances \
+      --filters "Name=tag:Name,Values=${instance}" \
+      --query "Reservations[*].Instances[*].PrivateIpAddress" \
+      --output text
   )
+
   
   cfssl gencert \
     -ca=./tls/ca.pem \
