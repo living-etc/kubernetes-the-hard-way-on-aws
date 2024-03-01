@@ -2,3 +2,5 @@
 *.csr
 *.kubeconfig
 encryption-config.yaml
+ssh/config
+ansible/inventory.ini
