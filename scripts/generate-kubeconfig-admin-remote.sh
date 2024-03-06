@@ -12,17 +12,17 @@ ALB_DNS_NAME=$(
     --output text
 )
 
-kubectl config set-cluster kubernetes-the-hard-way \
+kubectl config set-cluster kthw-aws \
   --certificate-authority=${TLS_PATH}/ca.pem \
   --embed-certs=true \
   --server=https://${ALB_DNS_NAME}:6443
 
-kubectl config set-credentials admin \
+kubectl config set-credentials admin-aws \
   --client-certificate=${TLS_PATH}/admin.pem \
   --client-key=${TLS_PATH}/admin-key.pem \
 
-kubectl config set-context kubernetes-the-hard-way \
-  --cluster=kubernetes-the-hard-way \
-  --user=admin
+kubectl config set-context kthw-aws \
+  --cluster=kthw-aws \
+  --user=admin-aws
 
-kubectl config use-context kubernetes-the-hard-way
+kubectl config use-context kthw-aws
