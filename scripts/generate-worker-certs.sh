@@ -22,14 +22,14 @@ for instance in worker-1 worker-2 worker-3; do
 CSR
 
   EXTERNAL_IP=$(
-    aws ec2 describe-instances \
+    aws --profile kthw ec2 describe-instances \
       --filters "Name=tag:Name,Values=${instance}" \
       --query "Reservations[*].Instances[*].PublicIpAddress" \
       --output text
   )
 
   INTERNAL_IP=$(
-    aws ec2 describe-instances \
+    aws --profile kthw ec2 describe-instances \
       --filters "Name=tag:Name,Values=${instance}" \
       --query "Reservations[*].Instances[*].PrivateIpAddress" \
       --output text

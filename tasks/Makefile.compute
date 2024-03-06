@@ -3,10 +3,10 @@ TERRAFORM_PATH=aws
 compute/all: compute/apply
 
 compute/plan:
-	cd ${TERRAFORM_PATH}; aws-profile -p root terraform init; aws-profile -p root terraform plan
+	cd ${TERRAFORM_PATH}; aws-profile -p management terraform init; aws-profile -p management terraform plan
 
 compute/apply:
-	cd ${TERRAFORM_PATH}; aws-profile -p root terraform apply -auto-approve
+	cd ${TERRAFORM_PATH}; aws-profile -p management terraform apply -auto-approve
 
 compute/clean:
-	cd ${TERRAFORM_PATH}; aws-profile -p root terraform destroy -auto-approve
+	cd ${TERRAFORM_PATH}; aws-profile -p management terraform destroy -auto-approve
