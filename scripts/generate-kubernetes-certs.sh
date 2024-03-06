@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-set -exuo pipefail
+set -euo pipefail
 
 RESOURCE_GROUP="Kubernetes-The-Hard-Way"
 TLS_PATH=tls
