@@ -1,6 +1,7 @@
 resource "aws_subnet" "my_subnets" {
-  count             = length(data.aws_availability_zones.available.names)
+  for_each = { for i, az in data.aws_availability_zones.available.names : i => az }
+
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = cidrsubnet(aws_vpc.my_vpc.cidr_block, 8, count.index)
-  availability_zone = data.aws_availability_zones.available.names[count.index]
+  cidr_block        = cidrsubnet(aws_vpc.my_vpc.cidr_block, 8, each.key)
+  availability_zone = each.value
 }

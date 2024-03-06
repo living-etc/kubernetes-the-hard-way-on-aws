@@ -1,5 +1,5 @@
 resource "aws_route_table_association" "my_route_table_association" {
-  count          = length(aws_subnet.my_subnets.*.id)
-  subnet_id      = aws_subnet.my_subnets[count.index].id
+  for_each       = aws_subnet.my_subnets
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.main.id
 }
