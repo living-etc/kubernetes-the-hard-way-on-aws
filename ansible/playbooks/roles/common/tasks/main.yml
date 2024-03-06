@@ -1,9 +1,6 @@
 ---
-- name: Set a hostname
-  ansible.builtin.hostname:
-    name: "{{ inventory_hostname }}"
-    use: systemd
-  become: true
+- name: Configure hostname
+  ansible.builtin.include_tasks: configure_hostname.yaml
 
 - name: Get load balancer IP (1/2) - Retrieve IP address
   ansible.builtin.command: "{{ role_path }}/files/get-public-ip.sh"
