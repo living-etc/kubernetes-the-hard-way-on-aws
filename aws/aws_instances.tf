@@ -6,6 +6,7 @@ resource "aws_instance" "controllers" {
   associate_public_ip_address = true
   key_name                    = aws_key_pair.key.key_name
   private_ip                  = each.value.private_ip
+  source_dest_check           = false
 
   vpc_security_group_ids = [
     aws_security_group.instance.id
@@ -28,6 +29,7 @@ resource "aws_instance" "workers" {
   associate_public_ip_address = true
   key_name                    = aws_key_pair.key.key_name
   private_ip                  = each.value.private_ip
+  source_dest_check           = false
 
   vpc_security_group_ids = [
     aws_security_group.instance.id
