@@ -5,8 +5,8 @@ resource "aws_route" "internet" {
 }
 
 resource "aws_route" "worker_routes" {
-  for_each               = aws_instance.workers
+  for_each               = { for i, w in local.workers : i => w }
   route_table_id         = aws_route_table.main.id
-  destination_cidr_block = "10.200.${each.key}.0/24"
+  destination_cidr_block = each.value.pod_cidr
   network_interface_id   = aws_instance.workers[each.key].primary_network_interface_id
 }
