@@ -1,5 +1,5 @@
-resource "aws_lb_listener" "my_alb_listener" {
-  load_balancer_arn = aws_lb.my_alb.arn
+resource "aws_lb_listener" "port_6443" {
+  load_balancer_arn = aws_lb.alb.arn
   port              = 6443
   protocol          = "TCP"
 

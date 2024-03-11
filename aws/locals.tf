@@ -1,6 +1,7 @@
 locals {
-  vpc_cidr = "10.240.0.0/16"
-  pod_cidr = "10.200.0.0/16"
+  aws_region = "eu-west-1"
+  vpc_cidr   = "10.240.0.0/16"
+  pod_cidr   = "10.200.0.0/16"
 
   subnets = {
     "eu-west-1a" = { name = "eu-west-1a", cidr_block = "10.240.0.0/24" }
