@@ -1,5 +1,5 @@
 resource "aws_instance" "controllers" {
-  for_each                    = { for i, c in local.controllers : i => c }
+  for_each                    = { for index, controller in local.controllers : index => controller }
   subnet_id                   = aws_subnet.my_subnets[each.key].id
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t3.medium"
@@ -22,7 +22,7 @@ resource "aws_instance" "controllers" {
 }
 
 resource "aws_instance" "workers" {
-  for_each                    = { for i, w in local.workers : i => w }
+  for_each                    = { for index, worker in local.workers : index => worker }
   subnet_id                   = aws_subnet.my_subnets[each.key].id
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t3.medium"
