@@ -1,13 +1,13 @@
 kubernetes/all: kubernetes/apply
 
 kubernetes/plan:
-	cd terraform; aws-profile -p management ./init.sh; aws-profile -p management terraform plan
+	cd cluster; aws-profile -p management ./init.sh; aws-profile -p management terraform plan
 
 kubernetes/apply:
-	cd terraform; aws-profile -p management terraform apply -auto-approve
+	cd cluster; aws-profile -p management terraform apply -auto-approve
 
 kubernetes/clean:
-	cd terraform; aws-profile -p management terraform destroy -auto-approve
+	cd cluster; aws-profile -p management terraform destroy -auto-approve
 
 kubernetes/test:
 	cd tests; go test -run '(TestKubernetesConfig)'
