@@ -20,3 +20,6 @@ status/kubelet:
 
 status/kube-apiserver:
 	@$(foreach CONTROLLER,$(CONTROLLERS),ssh $(CONTROLLER) -C 'sudo systemctl status kube-apiserver';)
+
+status/etcd:
+	@$(foreach CONTROLLER,$(CONTROLLERS),ssh $(CONTROLLER) -C 'sudo systemctl status etcd';)
