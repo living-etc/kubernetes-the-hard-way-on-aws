@@ -2,7 +2,7 @@ resource "aws_instance" "controllers" {
   for_each                    = local.controllers
   ami                         = data.aws_ami.ubuntu.id
   subnet_id                   = aws_subnet.my_subnets[each.value.subnet].id
-  instance_type               = "t3.medium"
+  instance_type               = "t3.micro"
   associate_public_ip_address = true
   key_name                    = aws_key_pair.key.key_name
   private_ip                  = each.value.private_ip
@@ -25,7 +25,7 @@ resource "aws_instance" "workers" {
   for_each                    = local.workers
   ami                         = data.aws_ami.ubuntu.id
   subnet_id                   = aws_subnet.my_subnets[each.value.subnet].id
-  instance_type               = "t3.medium"
+  instance_type               = "t3.micro"
   associate_public_ip_address = true
   key_name                    = aws_key_pair.key.key_name
   private_ip                  = each.value.private_ip
