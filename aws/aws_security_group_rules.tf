@@ -1,5 +1,5 @@
 resource "aws_security_group_rule" "this" {
-  for_each          = { for index, rule in local.security_group_rules : index => rule }
+  for_each          = local.security_group_rules
   type              = each.value.type
   from_port         = each.value.from_port
   to_port           = each.value.to_port
