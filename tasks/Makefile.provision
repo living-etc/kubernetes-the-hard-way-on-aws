@@ -4,7 +4,7 @@ provision/workers:
 	cd ansible; ansible-playbook -i inventory.ini playbooks/workers.yml
 
 provision/controllers:
-	cd ansible; ansible-playbook -i inventory.ini playbooks/controllers.yml
+	cd ansible; ansible-playbook -i inventory.ini playbooks/controllers.yml --extra-vars "@vars-from-terraform.yaml"
 
 provision/ping:
 	cd ansible; ansible all -m ping -i inventory.ini
