@@ -2,8 +2,5 @@
 - name: Configure hostname
   ansible.builtin.include_tasks: configure_hostname.yaml
 
-- name: Get load balaner address
-  ansible.builtin.include_tasks: get_load_balancer_address.yaml
-
 - name: Mount cgroup filesystem
   ansible.builtin.include_tasks: mount_cgroup_filesystem.yaml
