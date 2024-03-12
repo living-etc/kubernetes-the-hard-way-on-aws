@@ -1,5 +1,5 @@
 ---
-- name: Install Etcd (1/6) - Create etcd directory
+- name: Install Etcd (1/5) - Create etcd directory
   ansible.builtin.file:
     path: /etc/etcd
     state: directory
@@ -8,7 +8,7 @@
     group: root
   become: true
 
-- name: Install Etcd (2/6) - Copy PKI keys and certificates
+- name: Install Etcd (2/5) - Copy PKI keys and certificates
   ansible.builtin.copy:
     src: ../../../../../tls/{{ item }}
     dest: /etc/etcd/{{ item }}
@@ -21,27 +21,16 @@
     - kubernetes-key.pem
     - kubernetes.pem
 
-- name: Install Etcd (3/6) - Download and unpack release archive
+- name: Install Etcd (3/5) - Download and unpack release archive
   ansible.builtin.unarchive:
     src: https://github.com/etcd-io/etcd/releases/download/v{{ etcd_version }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz
     dest: /tmp/
     remote_src: yes
+    creates: /usr/local/bin/etcd
+  notify:
+    - Copy binaries
 
-- name: Install Etcd (4/6) - Copy binaries into place
-  ansible.builtin.copy:
-    src: /tmp/etcd-v{{ etcd_version }}-linux-amd64/{{ item }}
-    dest: /usr/local/bin/{{ item }}
-    owner: root
-    group: root
-    mode: '0755'
-    remote_src: yes
-  become: true
-  ignore_errors: true
-  loop:
-    - etcd
-    - etcdctl
-
-- name: Install Etcd (5/6) - Configure systemd unit
+- name: Install Etcd (4/5) - Configure systemd unit
   ansible.builtin.template:
     src: templates/etcd.service.j2
     dest: /etc/systemd/system/etcd.service
@@ -52,7 +41,7 @@
   notify:
     - Systemd daemon_reload
 
-- name: Install Etcd (6/6) - Make sure etcd is running
+- name: Install Etcd (5/5) - Make sure etcd is running
   ansible.builtin.systemd_service:
     state: started
     name: etcd
