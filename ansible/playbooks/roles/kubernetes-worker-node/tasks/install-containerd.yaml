@@ -4,7 +4,7 @@
     dest: /bin/
     remote_src: yes
     mode: '0755'
-    extra_opts: ['--strip-components=1', '--show-stored-names']
+    extra_opts: ['--strip-components=1']
   become: true
 
 - name: Install containerd (2/5) - Create configuration directory
