@@ -1,7 +1,7 @@
 ---
 kubernetes_version:
 
-kubernetes_control_plane_node_private_ip:
+controller_private_ip:
 kubernetes_control_plane_node_etcd_servers:
 
 cluster_cidr:

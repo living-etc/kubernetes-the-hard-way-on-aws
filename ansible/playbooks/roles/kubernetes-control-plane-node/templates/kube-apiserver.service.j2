@@ -4,7 +4,7 @@ Documentation=https://github.com/kubernetes/kubernetes
 
 [Service]
 ExecStart=/usr/local/bin/kube-apiserver \
-  --advertise-address={{ kubernetes_control_plane_node_private_ip }} \
+  --advertise-address={{ controller_private_ip }} \
   --allow-privileged=true \
   --apiserver-count=3 \
   --audit-log-maxage=30 \
