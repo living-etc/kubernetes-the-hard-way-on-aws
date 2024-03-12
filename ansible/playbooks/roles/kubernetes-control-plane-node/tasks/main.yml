@@ -1,33 +1,6 @@
 ---
-- name: Create directories
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-    owner: root
-    group: root
-  become: true
-  loop:
-    - /etc/kubernetes
-    - /etc/kubernetes/config
-    - /var/lib/kubernetes
-
-- name: Copy PKI keys and certificates
-  ansible.builtin.copy:
-    src: ../../../../../tls/{{ item }}
-    dest: /var/lib/kubernetes/{{ item }}
-    owner: root
-    group: root
-    mode: '0644'
-  become: true
-  loop:
-    - ca.pem
-    - ca-key.pem
-    - kubernetes.pem
-    - kubernetes-key.pem
-    - service-account.pem
-    - service-account-key.pem
-    - encryption-config.yaml
+- name: Configure PKI
+  ansible.builtin.include_tasks: configure-pki.yaml
 
 - name: Install kube-apiserver
   ansible.builtin.include_tasks: install-and-configure-kube-apiserver.yaml
