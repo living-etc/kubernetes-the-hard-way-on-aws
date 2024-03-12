@@ -1,4 +1,3 @@
 ---
 controller_etcd_initial_cluster: controller-1=https://10.240.0.4:2380,controller-2=https://10.240.1.4:2380,controller-3=https://10.240.2.4:2380
 kubernetes_control_plane_node_etcd_servers: https://10.240.0.4:2379,https://10.240.1.4:2379,https://10.240.2.4:2379
-kubernetes_control_plane_node_admin_kubeconfig_path: /home/ubuntu/admin.kubeconfig

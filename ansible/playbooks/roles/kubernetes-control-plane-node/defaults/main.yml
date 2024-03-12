@@ -3,7 +3,5 @@ kubernetes_version:
 
 kubernetes_control_plane_node_private_ip:
 kubernetes_control_plane_node_etcd_servers:
-kubernetes_control_plane_node_public_ip:
-kubernetes_control_plane_node_admin_kubeconfig_path:
 
 cluster_cidr:
