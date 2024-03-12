@@ -1,5 +1,6 @@
 resource "aws_instance" "controllers" {
-  for_each                    = local.controllers
+  for_each = local.controllers
+
   ami                         = data.aws_ami.ubuntu.id
   subnet_id                   = aws_subnet.subnets[each.value.subnet].id
   instance_type               = "t3.micro"
@@ -22,7 +23,8 @@ resource "aws_instance" "controllers" {
 }
 
 resource "aws_instance" "workers" {
-  for_each                    = local.workers
+  for_each = local.workers
+
   ami                         = data.aws_ami.ubuntu.id
   subnet_id                   = aws_subnet.subnets[each.value.subnet].id
   instance_type               = "t3.micro"
