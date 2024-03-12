@@ -1,11 +1,10 @@
 ---
-
 - name: Get load balancer address (1/2) - Retrieve address
   ansible.builtin.command: "{{ role_path }}/files/get-public-address.sh"
   delegate_to: 127.0.0.1
   register: public_address_script_output
+  run_once: true
 
 - name: Get load balancer address (2/2) - Set address as fact
   ansible.builtin.set_fact:
     controllers_lb_hostname: "{{ public_address_script_output.stdout }}"
-
