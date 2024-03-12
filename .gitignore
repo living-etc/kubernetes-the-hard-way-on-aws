@@ -4,3 +4,4 @@
 encryption-config.yaml
 ssh/config
 ansible/inventory.ini
+ansible/@vars-from-terraform.yaml
