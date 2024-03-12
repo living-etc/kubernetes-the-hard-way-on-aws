@@ -24,11 +24,11 @@
 - name: Install Etcd (3/5) - Download and unpack release archive
   ansible.builtin.unarchive:
     src: https://github.com/etcd-io/etcd/releases/download/v{{ etcd_version }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz
-    dest: /tmp/
+    dest: /usr/local/bin/
     remote_src: yes
-    creates: /usr/local/bin/etcd
-  notify:
-    - Copy binaries
+    mode: '0755'
+    extra_opts: ['--strip-components=1', '--show-stored-names']
+  become: true
 
 - name: Install Etcd (4/5) - Configure systemd unit
   ansible.builtin.template:
