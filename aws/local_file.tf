@@ -37,3 +37,12 @@ resource "local_file" "ansible_inventory" {
     ]
   })
 }
+
+resource "local_file" "ansible_vars_from_terraform" {
+  filename             = "../ansible/vars-from-terraform.yaml"
+  directory_permission = "0755"
+  file_permission      = "0644"
+  content = templatefile("${path.module}/vars-from-terraform.yaml.tpl", {
+    controllers_lb_hostname = aws_lb.alb.dns_name
+  })
+}

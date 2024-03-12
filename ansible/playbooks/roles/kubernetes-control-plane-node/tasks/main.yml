@@ -29,9 +29,6 @@
     - service-account-key.pem
     - encryption-config.yaml
 
-- name: Get load balaner address
-  ansible.builtin.include_tasks: get_load_balancer_address.yaml
-
 - name: Install kube-apiserver
   ansible.builtin.include_tasks: install-and-configure-kube-apiserver.yaml
 
