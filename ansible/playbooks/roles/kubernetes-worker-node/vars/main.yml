@@ -1,2 +1,6 @@
 ---
-# vars file for kubernetes-worker-node
+cni_version: 1.4.0
+crictl_version: 1.29.0
+runc_version: 1.1.12
+containerd_version: 1.7.13
+cluster_dns: 10.32.0.10

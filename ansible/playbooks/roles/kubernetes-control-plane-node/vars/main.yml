@@ -1,2 +1,2 @@
 ---
-# vars file for kubernetes-control-plane-node
+service_cluster_ip_range: 10.32.0.0/24

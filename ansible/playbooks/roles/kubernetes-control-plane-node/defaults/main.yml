@@ -7,4 +7,3 @@ kubernetes_control_plane_node_public_ip:
 kubernetes_control_plane_node_admin_kubeconfig_path:
 
 cluster_cidr:
-service_cluster_ip_range:

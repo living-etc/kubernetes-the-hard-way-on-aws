@@ -1,2 +1,2 @@
 ---
-# vars file for etcd-cluster-node
+etcd_version: 3.5.12

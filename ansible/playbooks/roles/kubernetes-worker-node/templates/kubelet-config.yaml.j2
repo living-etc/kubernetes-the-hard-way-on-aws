@@ -9,7 +9,7 @@ authentication:
     clientCAFile: "/var/lib/kubernetes/ca.pem"
 authorization:
   mode: Webhook
-clusterDomain: "{{ cluster_domain }}"
+clusterDomain: "cluster.local"
 clusterDNS:
   - "{{ cluster_dns }}"
 podCIDR: "{{ kubernetes_worker_node_pod_cidr }}"
